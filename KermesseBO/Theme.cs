@@ -9,10 +9,10 @@ namespace KermesseBO
 {
     public class Theme
     {
-        public Guid id { get; set; }
+        public Guid ID { get; set; }
         [Required(ErrorMessage = "le libellé doit être renseigné")]
         [MaxLength(50, ErrorMessage = "le libellé ne doit pas dépasser 50 caractères")]
         [MinLength(8, ErrorMessage = "le libellé doit faire au minimum 8 caractères")]
-        public String libelle { get; set; }
+        public String Libelle { get; set; }
     }
 }
