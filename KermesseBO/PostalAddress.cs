@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,10 +9,11 @@ namespace KermesseBO
 {
     public class PostalAddress
     {
-        private Guid id { get; set; }
-        private String libelle { get; set; }
-        private String street { get; set; }
-        private int postalCode { get; set; }
-        private String city { get; set; }
+        
+        public Guid ID { get; set ; }
+        public String Libelle { get; set; }
+        public String Street { get; set; }
+        public String PostalCode { get; set; }
+        public String City { get; set; }
     }
 }

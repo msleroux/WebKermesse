@@ -195,7 +195,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -275,6 +274,16 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KermesseBO\KermesseBO.csproj">
+      <Project>{60d5b2e4-fef8-453d-909d-05492c78055f}</Project>
+      <Name>KermesseBO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KermesseDAL\KermesseDAL.csproj">
+      <Project>{bdbaf6de-578c-4acd-9ad5-481604a9ec26}</Project>
+      <Name>KermesseDAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

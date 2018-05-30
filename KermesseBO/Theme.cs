@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,8 @@ namespace KermesseBO
 {
     public class Theme
     {
-        private Guid id { get; set; }
-        private String libelle { get; set; }
+        [Key]
+        public Guid ID { get; set; }
+        public String Libelle { get; set; }
     }
 }

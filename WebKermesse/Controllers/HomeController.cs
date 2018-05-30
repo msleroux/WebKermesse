@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KermesseBO;
+using KermesseDAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +12,21 @@ namespace WebKermesse.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            using (WebKContext context = new WebKContext())
+            {
+                Theme th = new Theme();
+
+                try
+                {
+                    context.Themes.Add(th);
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+                return View();
         }
 
         public ActionResult About()

@@ -9,16 +9,23 @@ namespace KermesseBO
 {
     public class Event
     {
-        private Guid id { get; set; }
+      
+        public Guid ID { get; set; }
+
         [Required(ErrorMessage="le libellé doit être renseigné")]
-        private String libelle { get; set; }
+        public String Libelle { get; set; }
+
         [Required(ErrorMessage = "la description doit être renseignée")]
-        private String description { get; set; }
+        public String Description { get; set; }
+
         [Required(ErrorMessage = "la date de début doit être renseignée")]
-        private DateTime startDate { get; set; }
+        public DateTime StartDate { get; set; }
+
         [Required(ErrorMessage = "la date de fin doit être renseignée")]
-        private DateTime endDate { get; set; }
-        private PostalAddress address { get; set; }
-        private Theme theme { get; set; }
+        public DateTime EndDate { get; set; }
+
+        public PostalAddress Address { get; set; }
+
+        public Theme Theme { get; set; }
     }
 }

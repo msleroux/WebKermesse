@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using KermesseBO;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -18,5 +20,6 @@ namespace MLV.DAL
             // Ajouter les revendications personnalisées de l’utilisateur ici
             return userIdentity;
         }
+
     }
 }
