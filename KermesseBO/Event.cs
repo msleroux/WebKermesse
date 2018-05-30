@@ -9,16 +9,20 @@ namespace KermesseBO
 {
     public class Event
     {
-        private Guid id { get; set; }
+        public Guid id { get; set; }
         [Required(ErrorMessage="le libellé doit être renseigné")]
-        private String libelle { get; set; }
+        [MaxLength(50,ErrorMessage= "le libellé ne doit pas dépasser 50 caractères")]
+        [MinLength(8, ErrorMessage = "le libellé doit faire au minimum 8 caractères")]
+        public String libelle { get; set; }
         [Required(ErrorMessage = "la description doit être renseignée")]
-        private String description { get; set; }
+        [MaxLength(500, ErrorMessage = "la description ne doit pas dépasser 500 caractères")]
+        [MinLength(30, ErrorMessage = "le libellé doit faire au minimum 30 caractères")]
+        public String description { get; set; }
         [Required(ErrorMessage = "la date de début doit être renseignée")]
-        private DateTime startDate { get; set; }
+        public DateTime startDate { get; set; }
         [Required(ErrorMessage = "la date de fin doit être renseignée")]
-        private DateTime endDate { get; set; }
-        private PostalAddress address { get; set; }
-        private Theme theme { get; set; }
+        public DateTime endDate { get; set; }
+        public PostalAddress address { get; set; }
     }
+    
 }
