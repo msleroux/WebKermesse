@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Event.cs" />
+    <Compile Include="IEntityIdentifiable.cs" />
     <Compile Include="Picture.cs" />
     <Compile Include="PostalAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -38,7 +38,7 @@ namespace Services
             {
                 var rqt = from Event e in context.Events
                           where e.StartDate >= startDate
-                          where e.EndDate <= endDate
+                          && e.EndDate <= endDate
                           orderby e.StartDate
                           select e;
                 foreach(Event e in rqt)

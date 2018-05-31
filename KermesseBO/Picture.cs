@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KermesseBO
 {
-    public class Picture
+    public class Picture : IEntityIdentifiable
     {
         public Guid ID { get; set; }
         [Required(ErrorMessage = "le chemin doit être renseigné")]
