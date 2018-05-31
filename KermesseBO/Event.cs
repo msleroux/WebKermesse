@@ -23,6 +23,7 @@ namespace KermesseBO
         [Required(ErrorMessage = "la date de fin doit être renseignée")]
         public DateTime EndDate { get; set; }
         public PostalAddress Address { get; set; }
+        public Picture Picture { get; set; }
     }
     
 }

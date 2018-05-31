@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KermesseBO", "KermesseBO\Ke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KermesseDAL", "KermesseDAL\KermesseDAL.csproj", "{BDBAF6DE-578C-4ACD-9AD5-481604A9EC26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{5D029ACC-D21D-4743-B346-FDA33F384029}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BDBAF6DE-578C-4ACD-9AD5-481604A9EC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDBAF6DE-578C-4ACD-9AD5-481604A9EC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDBAF6DE-578C-4ACD-9AD5-481604A9EC26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D029ACC-D21D-4743-B346-FDA33F384029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D029ACC-D21D-4743-B346-FDA33F384029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D029ACC-D21D-4743-B346-FDA33F384029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D029ACC-D21D-4743-B346-FDA33F384029}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
