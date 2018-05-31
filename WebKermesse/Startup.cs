@@ -28,7 +28,7 @@ namespace WebKermesse
                 //on va créer des nouveaux roles : on vérifie s'ils existent déjà
                 if (!roleManager.RoleExists("Admin"))
                 {
-                    var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                    var role = new IdentityRole();
                     role.Name = "Admin";
                     roleManager.Create(role);
 
@@ -47,13 +47,10 @@ namespace WebKermesse
 
                     //Add default User to Role Admin
                     if (chkAdmin.Succeeded)
-                    {
-                        //???
+                    {                        //???
                         var result1 = userManager.AddToRole(admin.Id, "EventPlanner");
-
-                    }
+                                            }
                    
-
                 }
 
                 if (!roleManager.RoleExists("EventPlanner"))
