@@ -15,10 +15,32 @@ namespace WebKermesse.Controllers
             using (WebKContext context = new WebKContext())
             {
                 Theme th = new Theme();
+                th.ID = Guid.NewGuid();
+                th.Libelle = "Plein air";
+
+                Event e = new Event();
+                e.ID = Guid.NewGuid();
+                e.Libelle = "Apéro Géant";
+                e.StartDate = DateTime.Now;
+                e.EndDate = Convert.ToDateTime("01/06/2018"); ;
+                e.Description = "Apéro géant sur l'esplanade Charles de Gaulle";
+                e.Theme = th;
+
+                PostalAddress p = new PostalAddress();
+                p.ID = Guid.NewGuid();
+                p.Libelle= "Champs de Mars";
+                p.PostalCode = "35000";
+                p.Street = "Esplanade Charles de Gaulle";
+                p.City = "Rennes";
+                
+                e.Address = p;
 
                 try
                 {
                     context.Themes.Add(th);
+                    context.Events.Add(e);
+                    context.Adresses.Add(p);
+
                     context.SaveChanges();
                 }
                 catch (Exception ex)
