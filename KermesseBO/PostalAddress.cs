@@ -23,7 +23,7 @@ namespace KermesseBO
         public String PostalCode { get; set; }
         [Required(ErrorMessage = "le renseignement de la Ville doit être renseigné")]
         [MaxLength(50, ErrorMessage = "le renseignement de la Ville ne doit pas dépasser 50 caractères")]
-        [MinLength(8, ErrorMessage = "le renseignement de la Ville doit faire au minimum 8 caractères")]
+        [MinLength(2, ErrorMessage = "le renseignement de la Ville doit faire au minimum 2 caractères")]
         public String City { get; set; }
     }
 }
