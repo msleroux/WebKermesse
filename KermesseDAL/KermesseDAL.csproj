@@ -61,9 +61,13 @@
     <Compile Include="Migrations\201805301507252_Init.Designer.cs">
       <DependentUpon>201805301507252_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805310716095_Insert BDD.cs" />
-    <Compile Include="Migrations\201805310716095_Insert BDD.Designer.cs">
-      <DependentUpon>201805310716095_Insert BDD.cs</DependentUpon>
+    <Compile Include="Migrations\201805310728261_Add Theme in Event.cs" />
+    <Compile Include="Migrations\201805310728261_Add Theme in Event.Designer.cs">
+      <DependentUpon>201805310728261_Add Theme in Event.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805310734219_Insert Date in BDD.cs" />
+    <Compile Include="Migrations\201805310734219_Insert Date in BDD.Designer.cs">
+      <DependentUpon>201805310734219_Insert Date in BDD.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,8 +87,11 @@
     <EmbeddedResource Include="Migrations\201805301507252_Init.resx">
       <DependentUpon>201805301507252_Init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805310716095_Insert BDD.resx">
-      <DependentUpon>201805310716095_Insert BDD.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805310728261_Add Theme in Event.resx">
+      <DependentUpon>201805310728261_Add Theme in Event.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805310734219_Insert Date in BDD.resx">
+      <DependentUpon>201805310734219_Insert Date in BDD.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

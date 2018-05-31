@@ -12,6 +12,13 @@ namespace WebKermesse.Controllers
     {
         public ActionResult Index()
         {
+            /*InitDataBdd();*/
+           
+                return View();
+        }
+
+        /*private void initDataBdd()
+         {
             using (WebKContext context = new WebKContext())
             {
                 Theme th = new Theme();
@@ -24,23 +31,27 @@ namespace WebKermesse.Controllers
                 e.StartDate = DateTime.Now;
                 e.EndDate = Convert.ToDateTime("01/06/2018"); ;
                 e.Description = "Apéro géant sur l'esplanade Charles de Gaulle";
-                e.Theme = th;
+
 
                 PostalAddress p = new PostalAddress();
                 p.ID = Guid.NewGuid();
-                p.Libelle= "Champs de Mars";
+                p.Libelle = "Champs de Mars";
                 p.PostalCode = "35000";
                 p.Street = "Esplanade Charles de Gaulle";
                 p.City = "Rennes";
-                
-                e.Address = p;
+
 
                 try
                 {
+                    //on insère en base Theme et Adresse pour qu'ils aient un id à référencer 
+                    // lorsqu'on insère l'event
                     context.Themes.Add(th);
-                    context.Events.Add(e);
                     context.Adresses.Add(p);
+                    context.SaveChanges();
 
+                    e.Address = p;
+                    e.Theme = th;
+                    context.Events.Add(e);
                     context.SaveChanges();
                 }
                 catch (Exception ex)
@@ -48,10 +59,11 @@ namespace WebKermesse.Controllers
 
                 }
             }
-                return View();
-        }
 
-        public ActionResult About()
+         }*/
+    
+
+    public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 

@@ -7,13 +7,13 @@ namespace KermesseDAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class InsertBDD : IMigrationMetadata
+    public sealed partial class AddThemeinEvent : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InsertBDD));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddThemeinEvent));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805310716095_Insert BDD"; }
+            get { return "201805310728261_Add Theme in Event"; }
         }
         
         string IMigrationMetadata.Source
