@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KermesseBO
 {
-    public class Theme
+    public class Theme : IEntityIdentifiable
     {
         public Guid ID { get; set; }
         [Required(ErrorMessage = "le libellé doit être renseigné")]
