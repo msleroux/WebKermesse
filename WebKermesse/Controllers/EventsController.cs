@@ -32,22 +32,24 @@ namespace WebKermesse.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
-            return View();
+            Theme t = new Theme() { ID = Guid.Empty, Libelle = "Saisir un thème" };
+
+            return View(new ThemeViewModel(t));
         }
 
         // POST: Events/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ThemeViewModel tVM)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                Theme t = new Theme() { ID = Guid.Empty, Libelle = tVM.Libelle };
+                ServiceThemes.Insert(t);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(tVM);
             }
         }
 
