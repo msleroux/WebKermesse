@@ -342,8 +342,10 @@
     <Content Include="bin\WebGrease.dll" />
     <Content Include="bin\WebKermesse.dll" />
     <Content Include="bin\WebKermesse.pdb" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\images\bkg-blu.jpg" />
+    <Content Include="Content\images\parlement-de-rennes.jpg" />
+    <Content Include="Content\images\photoRennes.jpg" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -385,10 +387,11 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="obj\Debug\WebKermesse.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\WebKermesse.dll" />
     <Content Include="obj\Debug\WebKermesse.pdb" />
@@ -476,6 +479,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\css\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
@@ -498,6 +502,10 @@
     <ProjectReference Include="..\KermesseDAL\KermesseDAL.csproj">
       <Project>{bdbaf6de-578c-4acd-9ad5-481604a9ec26}</Project>
       <Name>KermesseDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{5d029acc-d21d-4743-b346-fda33f384029}</Project>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
