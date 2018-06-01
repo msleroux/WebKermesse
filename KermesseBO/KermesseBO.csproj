@@ -90,6 +90,10 @@
     <Content Include="bin\Debug\Microsoft.AspNet.Identity.Core.xml" />
     <Content Include="bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll" />
     <Content Include="bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml" />
+    <Content Include="Content\bootstrap.paper.css" />
+    <Content Include="Content\bootstrap.paper.min.css" />
+    <Content Include="Content\bootstrap.united.css" />
+    <Content Include="Content\bootstrap.united.min.css" />
     <Content Include="obj\Debug\KermesseBO.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\KermesseBO.dll" />
     <Content Include="obj\Debug\KermesseBO.pdb" />

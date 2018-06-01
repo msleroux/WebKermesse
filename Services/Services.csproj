@@ -71,5 +71,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.paper.css" />
+    <Content Include="Content\bootstrap.paper.min.css" />
+    <Content Include="Content\bootstrap.united.css" />
+    <Content Include="Content\bootstrap.united.min.css" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

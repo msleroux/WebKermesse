@@ -94,6 +94,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
+    <Content Include="Content\bootstrap.paper.css" />
+    <Content Include="Content\bootstrap.paper.min.css" />
+    <Content Include="Content\bootstrap.united.css" />
+    <Content Include="Content\bootstrap.united.min.css" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

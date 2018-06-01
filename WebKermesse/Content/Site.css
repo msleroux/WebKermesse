@@ -1,12 +1,15 @@
 ﻿body {
-     padding-bottom: 20px;
+    padding-top:50px; 
+    padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left:25px;
+    padding-right: 25px;
+    text-decoration: none;
 }
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -23,10 +26,42 @@ textarea {
 }
 
 .rennes {
-    background-image: url("images/parlement-de-rennes.jpg");
+    background-image: url("images/photoRennes.jpg");
     color: aliceblue;
 }
 
 .inline {
     display:inline-block;
+}
+
+
+.card {
+    margin: auto;
+}
+
+.resize-mini {
+    width: 10rem;
+   
+}
+
+ul,li {
+    list-style-type: none;
+}
+
+#jumbo_img_rennes{
+    max-width:1024px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+.cardShadow {
+    box-shadow: 0 12px 15px 0 rgba(0,0,0,.24), 0 17px 50px 0 rgba(0,0,0,.19);
+}
+
+.margin{
+    margin:10px;
 }

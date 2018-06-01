@@ -71,7 +71,7 @@ namespace WebKermesse.Controllers
             return View();
         }
 
-        [AllowAnonymous]
+        [Authorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
