@@ -325,8 +325,6 @@
     <Content Include="bin\roslyn\System.Xml.XPath.XDocument.dll" />
     <Content Include="bin\roslyn\vbc.exe" />
     <Content Include="bin\roslyn\VBCSCompiler.exe" />
-    <Content Include="bin\Services.dll" />
-    <Content Include="bin\Services.pdb" />
     <Content Include="bin\System.Web.Helpers.dll" />
     <Content Include="bin\System.Web.Helpers.xml" />
     <Content Include="bin\System.Web.Mvc.dll" />
@@ -344,11 +342,8 @@
     <Content Include="bin\WebGrease.dll" />
     <Content Include="bin\WebKermesse.dll" />
     <Content Include="bin\WebKermesse.pdb" />
-    <Content Include="Content\themes\bootstrap.css" />
-    <Content Include="Content\themes\bootstrap.min.css" />
-    <Content Include="Content\images\bkg-blu.jpg" />
-    <Content Include="Content\images\parlement-de-rennes.jpg" />
-    <Content Include="Content\images\photoRennes.jpg" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -393,7 +388,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\css\Site.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="obj\Debug\WebKermesse.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\WebKermesse.dll" />
     <Content Include="obj\Debug\WebKermesse.pdb" />
@@ -415,8 +410,6 @@
     <Content Include="bin\KermesseBO.dll.config" />
     <Content Include="bin\KermesseDAL.dll.config" />
     <Content Include="bin\WebKermesse.dll.config" />
-    <Content Include="obj\Debug\build.force" />
-    <Content Include="bin\Services.dll.config" />
     <Content Include="obj\Debug\build.force" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\WebKermesse.csproj.CopyComplete" />
@@ -505,10 +498,6 @@
     <ProjectReference Include="..\KermesseDAL\KermesseDAL.csproj">
       <Project>{bdbaf6de-578c-4acd-9ad5-481604a9ec26}</Project>
       <Name>KermesseDAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Services\Services.csproj">
-      <Project>{5d029acc-d21d-4743-b346-fda33f384029}</Project>
-      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
