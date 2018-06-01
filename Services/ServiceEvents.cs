@@ -26,7 +26,8 @@ namespace Services
             Event eventReturned = null;
             using(WebKContext context = new WebKContext())
             {
-                eventReturned = context.Events.FirstOrDefault(e => e.ID == idEvent);
+                var rqt = context.Events.Where(e => e.ID == idEvent).Include(e => e.Theme).Include(e => e.Address);
+                eventReturned = rqt.Single<Event>();
             }
             return eventReturned;
         }
@@ -60,16 +61,17 @@ namespace Services
             return liste;
         }*/
 
-        public static void Insert(Event eventToAdd)
+        public static void Insert(Event eventToAdd, Guid idTheme)
         {
             using (WebKContext context = new WebKContext())
             {
+                eventToAdd.Theme = context.Themes.FirstOrDefault(t => t.ID == idTheme);
                 context.Events.Add(eventToAdd);
                 context.SaveChanges();
             }
         }
 
-        public static void Update(Event eventToUpdate)
+        public static void Update(Event eventToUpdate, Guid idTheme)
         {
             using (WebKContext context = new WebKContext())
             {
@@ -79,6 +81,7 @@ namespace Services
                 eventRetrieve.Address = eventToUpdate.Address;
                 eventRetrieve.StartDate = eventToUpdate.StartDate;
                 eventRetrieve.EndDate = eventToUpdate.EndDate;
+                eventRetrieve.Theme = context.Themes.FirstOrDefault(t => t.ID == idTheme);
                 context.SaveChanges();
             }
         }

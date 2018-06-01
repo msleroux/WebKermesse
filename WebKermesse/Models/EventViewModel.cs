@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebKermesse.Models
 {
@@ -11,6 +12,9 @@ namespace WebKermesse.Models
         public EventViewModel()
         {
             this.Metier = new Event();
+            this.Metier.Theme = new Theme() { ID = Guid.Empty };
+            this.Metier.Address = new PostalAddress() { ID = Guid.Empty };
+            this.Metier.Picture = new Picture() { ID = Guid.Empty };
         }
         public EventViewModel(Event e)
         {
@@ -37,5 +41,36 @@ namespace WebKermesse.Models
             get { return Metier.EndDate; }
             set { this.Metier.EndDate = value; }
         }
+
+        public Guid ThemeId
+        {
+            get { return Metier.Theme.ID; }
+            set { this.Metier.Theme.ID = value; }
+        }
+
+        public Guid AddressId
+        {
+            get { return Metier.Address.ID; }
+            set { this.Metier.Address.ID = value; }
+        }
+
+        public String StreetAddress
+        {
+            get { return Metier.Address.Street; }
+            set { this.Metier.Address.Street = value; }
+        }
+
+        public String PostalCodeAddress
+        {
+            get { return Metier.Address.PostalCode; }
+            set { this.Metier.Address.PostalCode = value; }
+        }
+
+        public String CityAddress
+        {
+            get { return Metier.Address.City; }
+            set { this.Metier.Address.City = value; }
+        }
+        public IEnumerable<SelectListItem> ListThemes { get; set; }
     }
 }
