@@ -10,6 +10,7 @@ namespace WebKermesse.Controllers
 {
     public class HomeController : Controller
     {
+        [AllowAnonymous]
         public ActionResult Index()
         {
            /* initDataBdd();*/
@@ -61,20 +62,23 @@ namespace WebKermesse.Controllers
             }
 
          }*/
-    
 
-    public ActionResult About()
+        [AllowAnonymous]
+        public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
+
+        
     }
 }
