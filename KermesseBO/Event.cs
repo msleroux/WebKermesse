@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KermesseBO
 {
-    public class Event
+    public class Event : IEntityIdentifiable
     {
         public Guid ID { get; set; }
         [Required(ErrorMessage="le libellé doit être renseigné")]
@@ -23,9 +23,9 @@ namespace KermesseBO
         [Required(ErrorMessage = "la date de fin doit être renseignée")]
         public DateTime EndDate { get; set; }
         public PostalAddress Address { get; set; }
-
+        public Picture Picture { get; set; }
+        [Required(ErrorMessage = "le thème doit être renseignée")]
         public Theme Theme { get; set; }
-
     }
     
 }

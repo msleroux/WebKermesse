@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MLV.DAL
+namespace KermesseDAL
 {
     public class ApplicationUser : IdentityUser
     {

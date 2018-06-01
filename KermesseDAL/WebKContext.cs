@@ -6,7 +6,7 @@
     using System.Linq;
     using KermesseBO;
 
-    public class WebKContext : DbContext
+    public class WebKContext : IdentityDbContext<ApplicationUser>
     {
         // Votre contexte a été configuré pour utiliser une chaîne de connexion « WebKContext » du fichier 
         // de configuration de votre application (App.config ou Web.config). Par défaut, cette chaîne de connexion cible 
@@ -15,7 +15,7 @@
         // Pour cibler une autre base de données et/ou un autre fournisseur de base de données, modifiez 
         // la chaîne de connexion « WebKContext » dans le fichier de configuration de l'application.
         public WebKContext()
-            : base("name=WebKContext")
+            :base("name=WebKContext", throwIfV1Schema: false)
         {
            Database.SetInitializer(new MigrateDatabaseToLatestVersion<WebKContext, KermesseDAL.Migrations.Configuration>());
         }

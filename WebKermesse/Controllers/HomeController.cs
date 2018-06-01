@@ -12,7 +12,7 @@ namespace WebKermesse.Controllers
     {
         public ActionResult Index()
         {
-            /*InitDataBdd();*/
+           /* initDataBdd();*/
            
                 return View();
         }
@@ -58,9 +58,9 @@ namespace WebKermesse.Controllers
                 {
 
                 }
-            }
+            }*/
 
-         }*/
+         }
     
 
     public ActionResult About()
