@@ -16,9 +16,9 @@ namespace WebKermesse.Controllers
         {
             List<ThemeViewModel> themesVM = new List<ThemeViewModel>();
             List<Theme> themes = ServiceThemes.GetAll();
-            foreach (Theme e in themes)
+            foreach (Theme t in themes)
             {
-                themesVM.Add(new ThemeViewModel(e));
+                themesVM.Add(new ThemeViewModel(t));
             }
             return View(themesVM);
         }
