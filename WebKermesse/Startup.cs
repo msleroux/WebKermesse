@@ -14,6 +14,7 @@ namespace WebKermesse
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            CreateRoleAndUser();
         }
 
         private void CreateRoleAndUser()
@@ -36,8 +37,8 @@ namespace WebKermesse
 
                     //création de admin et de ses attributs
                     var admin = new ApplicationUser();
-                    admin.UserName = "ep";
-                    admin.Email = "ep@gmail.com";
+                    admin.UserName = "sa@gmail.com";
+                    admin.Email = "sa@gmail.com";
                     admin.LockoutEnabled = false;
 
                     string adminPWD = "Pa$$w0rd";
@@ -48,8 +49,8 @@ namespace WebKermesse
                     //Add default User to Role Admin
                     if (chkAdmin.Succeeded)
                     {                        //???
-                        var result1 = userManager.AddToRole(admin.Id, "EventPlanner");
-                                            }
+                        var result1 = userManager.AddToRole(admin.Id, "Admin");
+                    }
                    
                 }
 
@@ -60,8 +61,8 @@ namespace WebKermesse
                     roleManager.Create(role);
                     //création du user et de ses attributs
                     var user = new ApplicationUser();
-                    user.UserName = "sa";
-                    user.Email = "sa@gmail.com";
+                    user.UserName = "ep@gmail.com";
+                    user.Email = "ep@gmail.com";
 
                     string userPWD = "Pa$$w0rd";
 
@@ -87,7 +88,7 @@ namespace WebKermesse
                 }
                 //création du user et de ses attributs
                 var member = new ApplicationUser();
-                member.UserName = "mb";
+                member.UserName = "mb@gmail.com";
                 member.Email = "mb@gmail.com";
                 member.LockoutEnabled = false;
 

@@ -1,65 +1,54 @@
-﻿using KermesseBO;
-using Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebKermesse.Models;
 
 namespace WebKermesse.Controllers
 {
-    public class EventsController : Controller
+    public class MapController : Controller
     {
-        // GET: Events
+        // GET: Map
         public ActionResult Index()
         {
-            List<EventViewModel> eventsVM = new List<EventViewModel>();
-            List<Event> events = ServiceEvents.GetAll();
-            foreach(Event e in events)
-            {
-                eventsVM.Add(new EventViewModel(e));
-            }
-            return View(eventsVM);
+            return View();
         }
 
-        // GET: Events/Details/5
+        // GET: Map/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Events/Create
+        // GET: Map/Create
         public ActionResult Create()
         {
-            Theme t = new Theme() { ID = Guid.Empty, Libelle = "Saisir un thème" };
-
-            return View(new ThemeViewModel(t));
+            return View();
         }
 
-        // POST: Events/Create
+        // POST: Map/Create
         [HttpPost]
-        public ActionResult Create(ThemeViewModel tVM)
+        public ActionResult Create(FormCollection collection)
         {
             try
             {
-                Theme t = new Theme() { ID = Guid.Empty, Libelle = tVM.Libelle };
-                ServiceThemes.Insert(t);
+                // TODO: Add insert logic here
+
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(tVM);
+                return View();
             }
         }
 
-        // GET: Events/Edit/5
+        // GET: Map/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Events/Edit/5
+        // POST: Map/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -75,13 +64,13 @@ namespace WebKermesse.Controllers
             }
         }
 
-        // GET: Events/Delete/5
+        // GET: Map/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Events/Delete/5
+        // POST: Map/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

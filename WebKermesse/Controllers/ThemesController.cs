@@ -9,57 +9,58 @@ using WebKermesse.Models;
 
 namespace WebKermesse.Controllers
 {
-    public class EventsController : Controller
+    public class ThemesController : Controller
     {
-        // GET: Events
+        // GET: Themes
         public ActionResult Index()
         {
-            List<EventViewModel> eventsVM = new List<EventViewModel>();
-            List<Event> events = ServiceEvents.GetAll();
-            foreach(Event e in events)
+            List<ThemeViewModel> themesVM = new List<ThemeViewModel>();
+            List<Theme> themes = ServiceThemes.GetAll();
+            foreach (Theme e in themes)
             {
-                eventsVM.Add(new EventViewModel(e));
+                themesVM.Add(new ThemeViewModel(e));
             }
-            return View(eventsVM);
+            return View(themesVM);
         }
 
-        // GET: Events/Details/5
+        // GET: Themes/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Events/Create
+        // GET: Themes/Create
         public ActionResult Create()
         {
-            Theme t = new Theme() { ID = Guid.Empty, Libelle = "Saisir un thème" };
-
+            Theme t = new Theme() { ID = Guid.Empty, Libelle = "Saisir libellé" };
             return View(new ThemeViewModel(t));
         }
 
-        // POST: Events/Create
+        // POST: Themes/Create
         [HttpPost]
         public ActionResult Create(ThemeViewModel tVM)
         {
             try
             {
-                Theme t = new Theme() { ID = Guid.Empty, Libelle = tVM.Libelle };
-                ServiceThemes.Insert(t);
+                // TODO: Add insert logic here
+                Theme themeToAdd = new Theme() { ID = Guid.NewGuid(), Libelle = tVM.Libelle };
+                ServiceThemes.Insert(themeToAdd);
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
+
                 return View(tVM);
             }
         }
 
-        // GET: Events/Edit/5
+        // GET: Themes/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Events/Edit/5
+        // POST: Themes/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -75,13 +76,13 @@ namespace WebKermesse.Controllers
             }
         }
 
-        // GET: Events/Delete/5
+        // GET: Themes/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Events/Delete/5
+        // POST: Themes/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
