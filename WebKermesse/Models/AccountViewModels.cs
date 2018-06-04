@@ -1,8 +1,47 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using KermesseDAL;
 
 namespace WebKermesse.Models
 {
+
+    // **************  classe rajoutée ********************************//
+    public class UserViewModel 
+    {
+        public UserViewModel()
+        {
+          
+        }
+        public UserViewModel(ApplicationUser u)
+        {
+            this.Id = u.Id;
+            this.Email = u.Email;
+            this.UserName = u.UserName;
+            this.PhoneNumber = u.PhoneNumber;
+           
+        }
+
+        [Required]
+        [Display(Name = "Id")]
+        public string Id { get; set; }
+
+        [Required]
+        [Display(Name = "Nom d'utilisateur")]
+        public string UserName { get; set; }
+        [Required]
+        [Display(Name = "Courrier électronique")]
+        public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Numéro de téléphone")]
+        public string PhoneNumber { get; set; }
+
+        // ************** FIN de la classe rajoutée ********************************//
+    }
+
+
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]

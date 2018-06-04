@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -10,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Services;
 using WebKermesse.Models;
 
 namespace WebKermesse.Controllers
@@ -56,6 +58,57 @@ namespace WebKermesse.Controllers
                 _userManager = value;
             }
         }
+
+
+        //
+        //GET: /Account/MemberList
+        [Authorize(Roles = "EventPlanner")] 
+        public ActionResult MemberList()
+        {
+            List<UserViewModel> usVM = new List<UserViewModel>();
+            List<ApplicationUser> users = ServiceAccount.GetAllUsers();
+            foreach (ApplicationUser u in users)
+            {
+                usVM.Add(new UserViewModel(u));
+            }
+            return View(usVM);
+            
+        }
+
+        [Authorize(Roles = "EventPlanner")]
+        // GET: /Account/Details/aaaa-èfdg
+        public ActionResult Details(string id)
+        {
+            UserViewModel uVM = new UserViewModel(ServiceAccount.GetAllUsers().FirstOrDefault(u => u.Id == id));
+            return View(uVM);
+            
+        }
+
+        [Authorize(Roles = "EventPlanner")]
+        // GET: Account/Delete/azsdfg
+        public ActionResult Delete(string id)
+        {
+            UserViewModel uVM = new UserViewModel(ServiceAccount.GetAllUsers().FirstOrDefault(u => u.Id == id));
+            return View(uVM);
+        }
+
+        [Authorize(Roles = "EventPlanner")]
+        // POST: Account/Delete/sdfg
+        [HttpPost]
+        public ActionResult Delete(string id, UserViewModel uVM)
+        {
+            try
+            {
+                ServiceAccount.DeleteCompteMembre(id);
+               
+              return RedirectToAction("MemberList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
 
 
@@ -165,7 +218,7 @@ namespace WebKermesse.Controllers
 
                 if (result.Succeeded)
                 {
-                    var result1 = UserManager.AddToRole(user.Id, "Member");
+                    var result1 = UserManager.AddToRoleAsync(user.Id, "Member");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
