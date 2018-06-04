@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using KermesseDAL;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebKermesse.Models;
@@ -152,10 +153,21 @@ namespace WebKermesse.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                  //  var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(contexte));
+                   // var role = new IdentityRole();
+                 //   role.Name = "Member";
+                   // roleManager.Create(role);
+
+                   
+
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var result1 = UserManager.AddToRole(user.Id, "Member");
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // Pour plus d'informations sur l'activation de la confirmation de compte et de la réinitialisation de mot de passe, visitez https://go.microsoft.com/fwlink/?LinkID=320771
