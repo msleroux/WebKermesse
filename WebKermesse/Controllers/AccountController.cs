@@ -153,10 +153,10 @@ namespace WebKermesse.Controllers
         {
             if (ModelState.IsValid)
             {
-                    var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(contexte));
-                    var role = new IdentityRole();
-                    role.Name = "Member";
-                    roleManager.Create(role);
+                  //  var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(contexte));
+                   // var role = new IdentityRole();
+                 //   role.Name = "Member";
+                   // roleManager.Create(role);
 
                    
 
