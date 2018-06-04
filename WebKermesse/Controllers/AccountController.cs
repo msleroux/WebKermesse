@@ -19,9 +19,12 @@ namespace WebKermesse.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+       
+
 
         public AccountController()
         {
+           
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -53,6 +56,8 @@ namespace WebKermesse.Controllers
                 _userManager = value;
             }
         }
+
+
 
         //
         // GET: /Account/Login
@@ -153,17 +158,11 @@ namespace WebKermesse.Controllers
         {
             if (ModelState.IsValid)
             {
-                  //  var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(contexte));
-                   // var role = new IdentityRole();
-                 //   role.Name = "Member";
-                   // roleManager.Create(role);
-
-                   
-
-                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 
-
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     var result1 = UserManager.AddToRole(user.Id, "Member");

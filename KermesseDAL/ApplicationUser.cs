@@ -18,6 +18,8 @@ namespace KermesseDAL
             // Notez qu'authenticationType doit correspondre à l'élément défini dans CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Ajouter les revendications personnalisées de l’utilisateur ici
+
+
             return userIdentity;
         }
 
