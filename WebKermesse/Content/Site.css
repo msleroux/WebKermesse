@@ -38,6 +38,8 @@ textarea {
 
 .card {
     margin: auto;
+    width : 180px;
+    height : 235px;
 }
 
 .resize-mini {
@@ -92,4 +94,10 @@ ul,li {
 
 .block{
     display:block;
+}
+
+.cardText {
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

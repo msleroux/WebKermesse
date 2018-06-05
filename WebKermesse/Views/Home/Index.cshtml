@@ -51,7 +51,9 @@
                 <div class="card-body">
                     <div class="card-body center">
                         <h5 class="card-title">@e.Libelle</h5>
-                        <p class="card-text">@e.Description</p>
+                        <button type="button" class="btn btn-danger border25" data-toggle="popover" title="Description" data-content=@e.Description>+</button>
+                        <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="@e.Description">+</a>
+                        <!-- <p class="card-text cardText">@e.Description</p>-->
                         <a href="/Map" class="btn btn-info margin">Où se garer ?</a>
                     </div>
                 </div>
