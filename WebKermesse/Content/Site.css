@@ -28,6 +28,7 @@ textarea {
 .rennes {
     background-image: url("images/photoRennes.jpg");
     color: aliceblue;
+    max-height:400px;
 }
 
 .inline {
@@ -37,21 +38,31 @@ textarea {
 
 .card {
     margin: auto;
+    width : 180px;
+    height : 235px;
 }
 
 .resize-mini {
-    width: 10rem;
-   
+    width: inherit;
+   height:150px;
 }
 
 ul,li {
     list-style-type: none;
 }
 
+.alignItemsCenter{
+    align-items:center;
+}
+
 #jumbo_img_rennes{
     max-width:1024px;
     margin-left:auto;
     margin-right:auto;
+    height: 400px;
+    justify-content:center;
+    align-items:stretch;
+    text-decoration:dashed;
 }
 
 .center {
@@ -64,4 +75,39 @@ ul,li {
 
 .margin{
     margin:10px;
+}
+.div-center {
+    align-content:center;
+}
+
+.padding {
+    padding: 15px 15px 15px 15px;
+}
+
+.border-radius {
+    border-radius: 5px 5px 5px 5px;
+}
+
+.border25 {
+    border-radius: 25px 25px 25px 25px;
+}
+
+.block{
+    display:block;
+}
+
+.cardText {
+    margin-rigth:auto;
+    margin-left:auto;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.padding-0 {
+    padding: 0px 0px 0px 0px;
+}
+
+.padding-5 {
+    padding: 5px 5px 5px 5px;
 }

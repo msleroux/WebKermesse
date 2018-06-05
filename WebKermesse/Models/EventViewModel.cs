@@ -11,6 +11,8 @@ namespace WebKermesse.Models
 {
     public class EventViewModel : ViewModel<Event>
     {
+        internal string textRecherche;
+
         public EventViewModel()
         {
             this.Metier = new Event();
@@ -88,5 +90,11 @@ namespace WebKermesse.Models
         [DataType(DataType.Upload)]
         [Display(Name = "Image")]
         public String file { get; set; }
+        public IEnumerable<Event> ListEventAVenir { get; set; }
+
+        public IEnumerable<Event> ListEventResult { get; set;}
+
+        public Guid FormThemeId { get; set; }
+        public string FormTextRecherche { get; set; }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using KermesseBO;
 using KermesseDAL;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebKermesse.Models;
 
 namespace WebKermesse.Controllers
 {
@@ -13,9 +15,45 @@ namespace WebKermesse.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-           /* initDataBdd();*/
-           
-                return View();
+            /* initDataBdd();*/
+
+            //Insertion dans une SelectListe les informations des Thèmes présent en BDD
+            List<Event> listeEventAVenir = GetListAVenir();
+            SelectList listeThemes = GetSelectListThemes();
+
+            //Instanciation de ViewModel avec l'event
+            EventViewModel eVM = new EventViewModel();
+            //Insertion de la SelectList dans le ViewModel
+            eVM.ListEventAVenir = listeEventAVenir;
+            eVM.ListThemes = listeThemes;
+            return View(eVM);
+        }
+        private SelectList GetSelectListThemes()
+        {
+            return new SelectList(ServiceThemes.GetAll(), "ID", "Libelle");
+        }
+        private List<Event>GetListAVenir()
+        {
+            return ServiceEvents.GetByDate(DateTime.Today.AddDays(-10), DateTime.Today.AddDays(8));
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult FormAccueil(EventViewModel model)
+        {
+            EventViewModel eVM = new EventViewModel();
+            eVM.ListThemes = GetSelectListThemes();
+            List<Event> listeEvent = ServiceEvents.GetByLibelleByTheme(model.FormTextRecherche, model.FormThemeId);
+            
+            if(listeEvent.Count != 0)
+            {
+                eVM.ListEventResult = listeEvent;
+                
+            } else
+            {
+                eVM.ListEventAVenir = GetListAVenir();
+            }
+            return View("Index",eVM);
         }
 
         /*private void initDataBdd()
@@ -79,6 +117,7 @@ namespace WebKermesse.Controllers
             return View();
         }
 
-        
+       
+
     }
 }

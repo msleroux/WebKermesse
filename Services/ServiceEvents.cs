@@ -38,7 +38,7 @@ namespace Services
 
         public static List<Event> GetByDate(DateTime startDate, DateTime endDate)
         {
-            List<Event> liste = null;
+            List<Event> liste = new List<Event>();
             using (WebKContext context = new WebKContext())
             {
                 var rqt = from Event e in context.Events
@@ -51,19 +51,55 @@ namespace Services
                     liste.Add(e);
                 }
             }
+           if(liste.Count() == 0)
+            {
+                liste = ServiceEvents.GetAll();
+            }
             return liste;
         }
 
-        /*public static List<Event> GetByTheme(Guid idTheme)
+        public static List<Event> GetByLibelleByTheme(string textRecherche, Guid idTheme)
         {
+            List<Event> results = new List<Event>();
+            using (WebKContext context = new WebKContext())
+            {
+               
+                if (idTheme != null)
+                {
+                    var rqt = context.Events.Where(Event => Event.Libelle.Contains(textRecherche) && Event.Theme.ID.Equals(idTheme));
+                    foreach (Event e in rqt)
+                    {
+                        results.Add(e);
+                    }
+                }
+                else
+                {
+                    var rqt = context.Events.Where(Event => Event.Libelle.Contains(textRecherche));
+                    foreach (Event e in rqt)
+                    {
+                        results.Add(e);
+                    }
+                }
+                                               
+            }
+            return results;
+        }
+
+        //renvoie la liste d'event en fonction d'un id theme
+        public static List<Event> GetByTheme(Guid idTheme)
+        {
+            
             List<Event> liste = null;
             using (WebKContext context = new WebKContext())
             {
-                var rqt = from Event e in context.Events
-                          where e.
+               var rqt = from Event e in context.Events
+                          join Theme th in context.Themes
+                          on e.Theme.ID equals th.ID
+                          where e.Theme.ID == idTheme
+                         select e;
             }
             return liste;
-        }*/
+        }
 
         public static void Insert(Event eventToAdd, Guid idTheme)
         {

@@ -7,6 +7,7 @@
     <title>@ViewBag.Title - Mon application ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/site.js")
 
 </head>
 <body>
@@ -24,8 +25,13 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
                     <li>@Html.ActionLink("Events", "Index", "Events")</li>
-                    <li>@Html.ActionLink("Themes", "Index", "Themes")</li>
                     <li>@Html.ActionLink("Map", "Index", "Map")</li>
+
+                    @if (@User.Identity.IsAuthenticated && User.IsInRole("EventPlanner"))
+                     {
+                        <li>@Html.ActionLink("Themes", "Index", "Themes")</li>
+                        <li>@Html.ActionLink("Members", "MemberList", "Account")</li>
+                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
