@@ -60,6 +60,7 @@ ul,li {
     height: 400px;
     justify-content:center;
     align-items:stretch;
+    text-decoration:dashed;
 }
 
 .center {

@@ -1,10 +1,12 @@
 ﻿using KermesseBO;
 using KermesseDAL;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebKermesse.Models;
 
 namespace WebKermesse.Controllers
 {
@@ -13,9 +15,15 @@ namespace WebKermesse.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-           /* initDataBdd();*/
-           
-                return View();
+            /* initDataBdd();*/
+
+            //Insertion dans une SelectListe les informations des Thèmes présent en BDD
+            SelectList listeThemes = new SelectList(ServiceThemes.GetAll(), "ID", "Libelle");
+            //Instanciation de ViewModel avec l'event
+            EventViewModel eVM = new EventViewModel();
+            //Insertion de la SelectList dans le ViewModel
+            eVM.ListThemes = listeThemes;
+            return View(eVM);
         }
 
         /*private void initDataBdd()
