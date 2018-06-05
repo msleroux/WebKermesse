@@ -54,6 +54,33 @@ namespace Services
             return liste;
         }
 
+        public static List<Event> GetByLibelleByTheme(string textRecherche, Guid idTheme)
+        {
+            List<Event> results = new List<Event>();
+            using (WebKContext context = new WebKContext())
+            {
+               
+                if (idTheme != null)
+                {
+                    var rqt = context.Events.Where(Event => Event.Libelle.Contains(textRecherche) && Event.Theme.ID.Equals(idTheme));
+                    foreach (Event e in rqt)
+                    {
+                        results.Add(e);
+                    }
+                }
+                else
+                {
+                    var rqt = context.Events.Where(Event => Event.Libelle.Contains(textRecherche));
+                    foreach (Event e in rqt)
+                    {
+                        results.Add(e);
+                    }
+                }
+                                               
+            }
+            return results;
+        }
+
         //renvoie la liste d'event en fonction d'un id theme
         public static List<Event> GetByTheme(Guid idTheme)
         {
