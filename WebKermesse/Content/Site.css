@@ -43,8 +43,8 @@ textarea {
 }
 
 .resize-mini {
-    width: 10rem;
-   
+    width: inherit;
+   height:150px;
 }
 
 ul,li {
@@ -97,7 +97,17 @@ ul,li {
 }
 
 .cardText {
+    margin-rigth:auto;
+    margin-left:auto;
     height: 40px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.padding-0 {
+    padding: 0px 0px 0px 0px;
+}
+
+.padding-5 {
+    padding: 5px 5px 5px 5px;
 }
