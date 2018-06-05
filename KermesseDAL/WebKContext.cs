@@ -36,6 +36,8 @@
         public virtual DbSet<Theme> Themes { get; set; }
 
         public virtual DbSet<PostalAddress> Adresses { get; set; }
+
+        public virtual DbSet<Picture> Pictures { get; set; }
     }
 
    

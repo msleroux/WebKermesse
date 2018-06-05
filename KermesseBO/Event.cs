@@ -16,11 +16,15 @@ namespace KermesseBO
         public String Libelle { get; set; }
         [Required(ErrorMessage = "la description doit être renseignée")]
         [MaxLength(500, ErrorMessage = "la description ne doit pas dépasser 500 caractères")]
-        [MinLength(30, ErrorMessage = "le libellé doit faire au minimum 30 caractères")]
+        [MinLength(8, ErrorMessage = "le libellé doit faire au minimum 8 caractères")]
         public String Description { get; set; }
         [Required(ErrorMessage = "la date de début doit être renseignée")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
         [Required(ErrorMessage = "la date de fin doit être renseignée")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
         public PostalAddress Address { get; set; }
         public Picture Picture { get; set; }

@@ -13,10 +13,14 @@ namespace Services
     {
         public static List<Event> GetAll()
         {
-            List<Event> liste = null;
+            List<Event> liste = new List<Event>();
             using(WebKContext context = new WebKContext())
             {
-                liste = context.Events.ToList<Event>();
+                var rqt = from Event e in context.Events orderby e.StartDate select e;
+                foreach(Event e in rqt)
+                {
+                    liste.Add(e);
+                }
             }
             return liste;
         }
@@ -26,7 +30,7 @@ namespace Services
             Event eventReturned = null;
             using(WebKContext context = new WebKContext())
             {
-                var rqt = context.Events.Where(e => e.ID == idEvent).Include(e => e.Theme).Include(e => e.Address);
+                var rqt = context.Events.Where(e => e.ID == idEvent).Include(e => e.Theme).Include(e => e.Address).Include(e => e.Picture);
                 eventReturned = rqt.Single<Event>();
             }
             return eventReturned;
@@ -90,7 +94,15 @@ namespace Services
         {
             using (WebKContext context = new WebKContext())
             {
-                Event eventRetrieve = Get(idEvent, context);
+                Event eventRetrieve = GetById(idEvent, context);
+                if(eventRetrieve.Address != null)
+                {
+                    context.Adresses.Remove(eventRetrieve.Address);
+                }
+                if(eventRetrieve.Picture != null)
+                {
+                    context.Pictures.Remove(eventRetrieve.Picture);
+                }
                 context.Events.Remove(eventRetrieve);
                 context.SaveChanges();
             }
@@ -99,6 +111,14 @@ namespace Services
         private static Event Get(Guid idEvent, WebKContext context)
         {
             return context.Events.FirstOrDefault(e => e.ID == idEvent);
+        }
+
+        private static Event GetById(Guid idEvent, WebKContext context)
+        {
+            Event eventReturned = null;
+            var rqt = context.Events.Where(e => e.ID == idEvent).Include(e => e.Theme).Include(e => e.Address).Include(e => e.Picture);
+            eventReturned = rqt.Single<Event>();
+            return eventReturned;
         }
     }
 }
