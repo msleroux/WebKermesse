@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -10,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Services;
 using WebKermesse.Models;
 
 namespace WebKermesse.Controllers
@@ -19,9 +21,12 @@ namespace WebKermesse.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+       
+
 
         public AccountController()
         {
+           
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -53,6 +58,59 @@ namespace WebKermesse.Controllers
                 _userManager = value;
             }
         }
+
+
+        //
+        //GET: /Account/MemberList
+        [Authorize(Roles = "EventPlanner")] 
+        public ActionResult MemberList()
+        {
+            List<UserViewModel> usVM = new List<UserViewModel>();
+            List<ApplicationUser> users = ServiceAccount.GetAllUsers();
+            foreach (ApplicationUser u in users)
+            {
+                usVM.Add(new UserViewModel(u));
+            }
+            return View(usVM);
+            
+        }
+
+        [Authorize(Roles = "EventPlanner")]
+        // GET: /Account/Details/aaaa-èfdg
+        public ActionResult Details(string id)
+        {
+            UserViewModel uVM = new UserViewModel(ServiceAccount.GetAllUsers().FirstOrDefault(u => u.Id == id));
+            return View(uVM);
+            
+        }
+
+        [Authorize(Roles = "EventPlanner")]
+        // GET: Account/Delete/azsdfg
+        public ActionResult Delete(string id)
+        {
+            UserViewModel uVM = new UserViewModel(ServiceAccount.GetAllUsers().FirstOrDefault(u => u.Id == id));
+            return View(uVM);
+        }
+
+        [Authorize(Roles = "EventPlanner")]
+        // POST: Account/Delete/sdfg
+        [HttpPost]
+        public ActionResult Delete(string id, UserViewModel uVM)
+        {
+            try
+            {
+                ServiceAccount.DeleteCompteMembre(id);
+               
+              return RedirectToAction("MemberList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+
 
         //
         // GET: /Account/Login
@@ -153,30 +211,28 @@ namespace WebKermesse.Controllers
         {
             if (ModelState.IsValid)
             {
-                  //  var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(contexte));
-                   // var role = new IdentityRole();
-                 //   role.Name = "Member";
-                   // roleManager.Create(role);
-
-                   
-
-                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
 
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = UserManager.Create(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     var result1 = UserManager.AddToRole(user.Id, "Member");
 
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    if (result1.Succeeded)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        return RedirectToAction("Index", "Home");
+                    }
+                                       
                     // Pour plus d'informations sur l'activation de la confirmation de compte et de la réinitialisation de mot de passe, visitez https://go.microsoft.com/fwlink/?LinkID=320771
                     // Envoyer un message électronique avec ce lien
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmez votre compte", "Confirmez votre compte en cliquant <a href=\"" + callbackUrl + "\">ici</a>");
 
-                    return RedirectToAction("Index", "Home");
+                   
                 }
                 AddErrors(result);
             }
