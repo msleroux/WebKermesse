@@ -44,14 +44,18 @@
 <div class="container">
     <h2>Evénements à venir sur Rennes</h2>
     <div class="row center">
-        <div class=" col-md-4 center card mb-3 cardShadow margin" style="width: 18rem;">
-            <img class="card-img-top resize-mini center" src="~/Content/images/bkg-blu.jpg" alt="Card image cap">                <div class="card-body">
-                <div class="card-body center">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-info margin">voir plus</a>
+        @foreach (var e in Model.ListEventAVenir)
+        {
+            <div class=" col-md-4 center card mb-3 cardShadow margin" style="width: 18rem;">
+                <img class="card-img-top resize-mini center" src="~/Content/images/bkg-blu.jpg" alt="image de l'événement @e.Libelle"> 
+                <div class="card-body">
+                    <div class="card-body center">
+                        <h5 class="card-title">@e.Libelle</h5>
+                        <p class="card-text">@e.Description</p>
+                        <a href="/Map" class="btn btn-info margin">Où se garer ?</a>
+                    </div>
                 </div>
             </div>
-        </div>
-     </div>
+        }
+    </div>
 </div>

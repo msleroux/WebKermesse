@@ -213,22 +213,26 @@ namespace WebKermesse.Controllers
             {
                 
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                
-                var result = await UserManager.CreateAsync(user, model.Password);
+
+                var result = UserManager.Create(user, model.Password);
 
                 if (result.Succeeded)
                 {
-                    var result1 = UserManager.AddToRoleAsync(user.Id, "Member");
+                    var result1 = UserManager.AddToRole(user.Id, "Member");
 
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    if (result1.Succeeded)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        return RedirectToAction("Index", "Home");
+                    }
+                                       
                     // Pour plus d'informations sur l'activation de la confirmation de compte et de la réinitialisation de mot de passe, visitez https://go.microsoft.com/fwlink/?LinkID=320771
                     // Envoyer un message électronique avec ce lien
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmez votre compte", "Confirmez votre compte en cliquant <a href=\"" + callbackUrl + "\">ici</a>");
 
-                    return RedirectToAction("Index", "Home");
+                   
                 }
                 AddErrors(result);
             }

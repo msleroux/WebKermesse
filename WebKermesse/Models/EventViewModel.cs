@@ -72,5 +72,6 @@ namespace WebKermesse.Models
             set { this.Metier.Address.City = value; }
         }
         public IEnumerable<SelectListItem> ListThemes { get; set; }
+        public IEnumerable<Event> ListEventAVenir { get; set; }
     }
 }

@@ -18,10 +18,13 @@ namespace WebKermesse.Controllers
             /* initDataBdd();*/
 
             //Insertion dans une SelectListe les informations des Thèmes présent en BDD
+            List<Event> listeEventAVenir = new List<Event>(ServiceEvents.GetByDate(DateTime.Today.AddDays(-10), DateTime.Today.AddDays(8)));
             SelectList listeThemes = new SelectList(ServiceThemes.GetAll(), "ID", "Libelle");
+
             //Instanciation de ViewModel avec l'event
             EventViewModel eVM = new EventViewModel();
             //Insertion de la SelectList dans le ViewModel
+            eVM.ListEventAVenir = listeEventAVenir;
             eVM.ListThemes = listeThemes;
             return View(eVM);
         }

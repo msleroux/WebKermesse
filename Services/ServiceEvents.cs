@@ -34,7 +34,7 @@ namespace Services
 
         public static List<Event> GetByDate(DateTime startDate, DateTime endDate)
         {
-            List<Event> liste = null;
+            List<Event> liste = new List<Event>();
             using (WebKContext context = new WebKContext())
             {
                 var rqt = from Event e in context.Events
@@ -46,6 +46,10 @@ namespace Services
                 {
                     liste.Add(e);
                 }
+            }
+           if(liste.Count() == 0)
+            {
+                liste = ServiceEvents.GetAll();
             }
             return liste;
         }
