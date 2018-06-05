@@ -50,16 +50,21 @@ namespace Services
             return liste;
         }
 
-        /*public static List<Event> GetByTheme(Guid idTheme)
+        //renvoie la liste d'event en fonction d'un id theme
+        public static List<Event> GetByTheme(Guid idTheme)
         {
+            
             List<Event> liste = null;
             using (WebKContext context = new WebKContext())
             {
-                var rqt = from Event e in context.Events
-                          where e.
+               var rqt = from Event e in context.Events
+                          join Theme th in context.Themes
+                          on e.Theme.ID equals th.ID
+                          where e.Theme.ID == idTheme
+                         select e;
             }
             return liste;
-        }*/
+        }
 
         public static void Insert(Event eventToAdd, Guid idTheme)
         {
