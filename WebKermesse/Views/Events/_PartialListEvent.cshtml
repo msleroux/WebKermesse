@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WebKermesse.Models.EventViewModel>
+
+
+
+<div class="container-fluid center">
+    
+    <div class="row center col-lg-10 col-md-8">
+        @foreach (var item in Model)
+        {
+            <div class=" col-md-4 center padding-0 card mb-3 cardShadow margin" style="width: 18rem;">
+                <img class="card-img-top resize-mini" src=" @Html.DisplayFor(modelItem => item.file)" alt="image de l'événement">
+                <div class="card-body center margin">
+                    <div class="card-body center">
+                        <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Libelle)</h5>
+                        <a href="/Map" class="btn btn-success">Où se garer ?</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+  
