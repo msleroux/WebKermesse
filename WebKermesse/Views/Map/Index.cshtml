@@ -171,6 +171,15 @@
             });
         };
 
+        // On vérifie que la liste est prete
+        liste_prete = setInterval(function () {
+            if ($(".pac-container").html() != undefined && $(".pac-container").html() != "") {
+                google.maps.event.trigger(document.getElementById('origin-input'), 'keydown', { keyCode: 40 });
+                google.maps.event.trigger(document.getElementById('destination-input'), 'keydown', { keyCode: 13, triggered: true });
+                clearInterval(liste_prete)
+            }
+        }, 200);
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB67MlViEjryRDO6eCtCF3mQzV2vyExT_Y&libraries=places&callback=initMap"
             async defer></script>
