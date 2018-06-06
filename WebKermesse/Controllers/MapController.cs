@@ -11,6 +11,8 @@ namespace WebKermesse.Controllers
         // GET: Map
         public ActionResult Index()
         {
+            ViewBag.AdresseDepart = "Rue du Bosphore,  Rennes";
+            ViewBag.AdresseFinale = "Boulevard de la liberté, Rennes";
             return View();
         }
 

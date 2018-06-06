@@ -28,10 +28,10 @@
                     <li>@Html.ActionLink("Map", "Index", "Map")</li>
 
                     @if (@User.Identity.IsAuthenticated && User.IsInRole("EventPlanner"))
-                     {
+                    {
                         <li>@Html.ActionLink("Themes", "Index", "Themes")</li>
                         <li>@Html.ActionLink("Members", "MemberList", "Account")</li>
-                     }
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -42,7 +42,7 @@
         <hr />
         <footer>
             <p>
-                &copy; @DateTime.Now.Year - My ASP.NET Application - 
+                &copy; @DateTime.Now.Year - My ASP.NET Application -
                 @Html.ActionLink("À propos de", "About", "Home") -
                 @Html.ActionLink("Contact", "Contact", "Home")
             </p>

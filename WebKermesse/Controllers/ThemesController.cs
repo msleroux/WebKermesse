@@ -49,7 +49,8 @@ namespace WebKermesse.Controllers
             }
             catch(Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
+                Console.ReadKey();
                 return View(tVM);
             }
         }

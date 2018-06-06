@@ -1,0 +1,76 @@
+﻿ @model WebKermesse.Models.EventViewModel
+
+
+<div class="row center">
+    <div class="card mb-3 cardShadow margin" style="width: auto; height:auto; border:2px #772953 solid">
+        <h3 class="card-title" style="margin-left:20px">@ViewBag.Libelle</h3>
+        <img class="card-img-top" src="@ViewBag.Image" alt="Card image cap" style="max-width:650px;height:auto;  display:block; margin-left:auto; margin-right:auto;">
+        <div class="card-body">
+            <hr />
+            <dl class="dl-horizontal">
+
+                <dt>
+                    Description
+                </dt>
+
+                <dd>
+                    @ViewBag.Description
+                </dd>
+
+                <dt>
+                    Date de début
+                </dt>
+
+                <dd>
+                    @ViewBag.StartDate
+                </dd>
+
+                <dt>
+                    Date de fin
+                </dt>
+
+                <dd>
+                    @ViewBag.EndDate
+                </dd>
+
+                <dt>
+                    Thème
+                </dt>
+
+                <dd>
+                    @ViewBag.Theme
+                </dd>
+
+                <dt>
+                    Rue
+                </dt>
+
+                <dd>
+                    @ViewBag.StreetAddress
+                </dd>
+
+                <dt>
+                    Code Postal
+                </dt>
+
+                <dd>
+                    @ViewBag.PostalCode
+                </dd>
+
+                <dt>
+                    Ville
+                </dt>
+
+                <dd>
+                    @ViewBag.City
+                </dd>
+            </dl>
+            <hr />
+        </div>
+    </div>  
+</div>
+<hr />
+<p>
+    
+    @Html.ActionLink("Retour à la liste d'évents", "Index")
+</p>
