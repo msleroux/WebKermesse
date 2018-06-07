@@ -85,5 +85,22 @@ namespace WebKermesse.Controllers
                 return View();
             }
         }
+
+
+        [HttpGet]
+        public ActionResult Parkings()
+        {
+
+            ParkingController parkC = new ParkingController();
+
+
+            parkC.test();
+          
+
+                return View("Parkings");
+        }
+
+
+
     }
 }
