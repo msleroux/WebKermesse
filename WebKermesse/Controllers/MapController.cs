@@ -1,8 +1,11 @@
-﻿using System;
+﻿using KermesseBO;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebKermesse.Models;
 
 namespace WebKermesse.Controllers
 {
@@ -11,8 +14,26 @@ namespace WebKermesse.Controllers
         // GET: Map
         public ActionResult Index()
         {
-            ViewBag.AdresseDepart = "Rue du Bosphore,  Rennes";
-            ViewBag.AdresseFinale = "Boulevard de la liberté, Rennes";
+            //List<EventViewModel> eventsVM = new List<EventViewModel>();
+            List<Event> events = ServiceEvents.GetAllWithAddress();
+            List<String> name = new List<String>();
+            List<String> address = new List<String>();
+            List<String> idEvent = new List<String>();
+            foreach (Event e in events)
+            {
+                if(e.Address != null)
+                {
+                    name.Add(e.Libelle);
+                    address.Add(e.Address.Street + ' ' + e.Address.PostalCode + ' ' + e.Address.City);
+                    idEvent.Add(e.ID.ToString());
+                }
+                //eventsVM.Add(new EventViewModel(e));
+            }
+            ViewData["ListNameEvent"] = name.ToArray();
+            ViewData["ListAddressEvent"] = address.ToArray();
+            ViewData["ListIdEvent"] = idEvent.ToArray();
+
+
             return View();
         }
 

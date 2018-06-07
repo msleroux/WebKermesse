@@ -25,6 +25,20 @@ namespace Services
             return liste;
         }
 
+        public static List<Event> GetAllWithAddress()
+        {
+            List<Event> liste = new List<Event>();
+            using (WebKContext context = new WebKContext())
+            {
+                var rqt = from Event e in context.Events.Include(e =>e.Address) orderby e.StartDate select e;
+                foreach (Event e in rqt)
+                {
+                    liste.Add(e);
+                }
+            }
+            return liste;
+        }
+
         public static Event GetById(Guid idEvent)
         {
             Event eventReturned = null;
