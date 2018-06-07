@@ -78,7 +78,7 @@ namespace Services
             using (WebKContext context = new WebKContext())
             {
                
-                if (idTheme != null)
+               /* if (idTheme != null || idTheme != Guid.Empty)
                 {
                     var rqt = context.Events.Where(Event => Event.Libelle.Contains(textRecherche) && Event.Theme.ID.Equals(idTheme));
                     foreach (Event e in rqt)
@@ -86,15 +86,15 @@ namespace Services
                         results.Add(e);
                     }
                 }
-                else
-                {
-                    var rqt = context.Events.Where(Event => Event.Libelle.Contains(textRecherche));
+                else { */
+               
+                    var rqt = context.Events.Where(Event => Event.Libelle.ToLower().Contains(textRecherche.ToLower()));
                     foreach (Event e in rqt)
                     {
                         results.Add(e);
                     }
-                }
-                                               
+                //}
+
             }
             return results;
         }
