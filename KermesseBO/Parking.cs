@@ -6,24 +6,33 @@ using System.Threading.Tasks;
 
 namespace KermesseBO
 {
-    public class Parking
+    public class Parking : IEntityIdentifiable
     {
         public Guid ID { get; set; }
+        public string idJSON { get; set; }
 
         public string name { get; set; }
 
         public string status { get; set; }
 
-        public string max { get; set; }
+        public int max { get; set; }
 
-        public string free { get; set; }
+        public int free { get; set; }
 
         public double tarif { get; set; }
+
+        public string lat { get; set; }
+        public string lng { get; set; }
+
+        public Parking()
+        {
+            ID = new Guid();
+        }
 
     }
 
     //*****************************  code généré par json2csharp  ***********************************
-    public class ParkInformation
+    /*public class ParkInformation
     {
         public string name { get; set; }
         public string status { get; set; }
@@ -72,5 +81,5 @@ namespace KermesseBO
     {
         public List<Park> parks { get; set; }
         public Features features { get; set; }
-    }
+    }*/
 }

@@ -263,6 +263,7 @@
     <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ParkingViewModel.cs" />
     <Compile Include="Models\PostalAddressViewModel.cs" />
     <Compile Include="Models\ListEventViewModel.cs" />
     <Compile Include="Models\ThemeViewModel.cs" />
@@ -689,12 +690,12 @@
     <Content Include="Views\Events\_PartialListEvent.cshtml" />
     <Content Include="Views\Themes\_PartialListTheme.cshtml" />
     <Content Include="Views\Map\Parkings.cshtml" />
+    <Content Include="Views\Parking\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\css\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="Views\Parking\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
