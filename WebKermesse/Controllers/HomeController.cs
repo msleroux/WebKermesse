@@ -69,9 +69,18 @@ namespace WebKermesse.Controllers
                
              // les cas de champs nul sont gérées dans la classe de services
                listeEvent = ServiceEvents.GetByLibelleByTheme(model.Recherche, model.ThemeView.ThemeId);
+
             }
 
             AccueilViewModel leVM = new AccueilViewModel();
+            foreach (Event e in listeEvent)
+            {
+                if (e.Picture == null)
+                {
+                    e.Picture = new Picture() { Path = "Upcoming_Events-Banner.jpg" };
+
+                }
+            }
             leVM.EventResults = initListEventViewModel(listeEvent);
 
             return View("Index",leVM);

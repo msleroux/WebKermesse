@@ -102,7 +102,7 @@
                         //insertion de l'ID de l'événement
                         link = link.replace("replace", location[2]);
                         //contenu du marker
-                        var markerContent = "<b>" + location[0] + "</b>" + "<br>" + location[1] + "<br>" + link
+                        var markerContent = "<b>" + location[0] + "</b>" + "<br>" + location[1] + "<br>" + link;
                         //création du marker avec les infos de contenu
                         createMarker(results[0].geometry.location, markerContent);
                     }
