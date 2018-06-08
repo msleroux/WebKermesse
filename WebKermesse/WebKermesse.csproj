@@ -428,6 +428,12 @@
     <Content Include="Content\images\flag-location.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\images\location-car-orange.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\images\location-car.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\images\location-event.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -708,6 +714,7 @@
     <Content Include="Views\Themes\_PartialListTheme.cshtml" />
     <Content Include="Views\Map\Parkings.cshtml" />
     <Content Include="Views\Parking\Index.cshtml" />
+    <Content Include="Views\Parking\ParkMap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
