@@ -1,0 +1,222 @@
+﻿<!--<div>
+    <h2>Search by ID</h2>
+    <input type="text" id="prodId" size="5" />
+    <input type="button" value="Search" onclick="find();" />
+    <p id="product" />
+</div>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+<script>
+    var uri = 'api/products';
+
+    $(document).ready(function () {
+      // Send an AJAX request
+      $.getJSON(uri)
+          .done(function (data) {
+            // On success, 'data' contains a list of products.
+            $.each(data, function (key, item) {
+              // Add a list item for the product.
+              $('<li>', { text: formatItem(item) }).appendTo($('#products'));
+            });
+          });
+    });
+
+    function formatItem(item) {
+      return item.Name + ': $' + item.Price;
+    }
+
+    function find() {
+      var id = $('#prodId').val();
+      $.getJSON(uri + '/' + id)
+          .done(function (data) {
+            $('#product').text(formatItem(data));
+          })
+          .fail(function (jqXHR, textStatus, err) {
+            $('#product').text('Error: ' + err);
+          });
+    }
+</script>-->
+
+<h1> Retour api parking</h1>
+<script>
+    var premMinElt = document.getElementById("premMin");
+
+    ajaxGet("http://data.citedia.com/r1/parks", function (reponse) {
+        var premierMinistre = JSON.parse(reponse);
+        // Ajout de la description et du logo dans la page web
+        var descriptionElt = document.createElement("p");
+        descriptionElt.textContent = premierMinistre.description;
+
+    });
+</script>
+
+@{
+    var lieu = @ViewData["lieu"];
+}
+<form method="post" action="@Url.Action("TrajetConvive", "Convive")">
+    <div class="form-group">
+        <input style="display: none" type="text" name="lieu" value="@ViewData["lieu"]" class="form-control" id="lieu" placeholder="Entrez votre adresse de départ">
+        <input type="text" name="adresse" value="@ViewData["adresse"]" class="form-control" id="adresse" placeholder="Entrez votre adresse de départ">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<iframe id="maps" width="600" height="450" frameborder="0" style="border: 0;"
+        src='https://www.google.com/maps/embed/v1/directions?origin=@ViewData["adresse"]&destination=@ViewData["lieu"]&key=AIzaSyDWuVY7zg7s0MRF4Pg5xuWkGmIKCGDvoPs' allowfullscreen></iframe>
+
+<table id="PTable" class="table" style="width: 50%;">
+    <thead>
+        <tr>
+            <th>
+                Parking
+            </th>
+            <th>
+                Places
+            </th>
+        </tr>
+    </thead>
+    <tbody id='bodyT'>
+        <tr></tr>
+    </tbody>
+</table>
+
+<script>
+    window.onload = function() {
+        let location;
+        var xhr = new XMLHttpRequest();
+        xhr.open('get',
+            "https://maps.googleapis.com/maps/api/geocode/json?address=@ViewData["lieu"]&key=AIzaSyDWuVY7zg7s0MRF4Pg5xuWkGmIKCGDvoPs");
+        xhr.send();
+        xhr.onreadystatechange = function() { //Call a function when the state changes.
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                location = JSON.parse(this.responseText).results[0].geometry.location;
+                NearestCity(location.lat, location.lng);
+            }
+        }
+
+    }
+
+// Convert Degress to Radians
+    function Deg2Rad(deg) {
+        return deg * Math.PI / 180;
+    }
+
+    function PythagorasEquirectangular(lat1, lon1, lat2, lon2) {
+        lat1 = Deg2Rad(lat1);
+        lat2 = Deg2Rad(lat2);
+        lon1 = Deg2Rad(lon1);
+        lon2 = Deg2Rad(lon2);
+        var R = 6371; // km
+        var x = (lon2 - lon1) * Math.cos((lat1 + lat2) / 2);
+        var y = (lat2 - lat1);
+        var d = Math.sqrt(x * x + y * y) * R;
+        return d;
+    }
+
+    var lat = 20; // user's latitude
+    var lon = 40; // user's longitude
+
+    function NearestCity(latitude, longitude) {
+        let parks = [];
+        let parkings = [];
+        VanillaRequests('get', 'http://data.citedia.com/r1/parks', {}, {}).then((responseText) => {
+            JSON.parse(responseText).parks.forEach((park) => {
+                console.log('park.parkInformation.free', park.parkInformation.free)
+                if (park.parkInformation.free > 10) {
+                    parks.push(park);
+                }
+            })
+            console.log('parks', parks);
+            for (let i = 0; i < parks.length; i++) {
+                VanillaRequests('get',
+                    "https://maps.googleapis.com/maps/api/geocode/json?address=parking%20" +
+                    parks[i].parkInformation.name +
+                    ", rennes&key=AIzaSyDWuVY7zg7s0MRF4Pg5xuWkGmIKCGDvoPs",
+                    {},
+                    {}).then((response) => {
+                    console.log('response', parks);
+                    parkings.push({
+                        'id': parks[i].id,
+                        'coordinates': JSON.parse(response).results[0].geometry.location,
+                        'places': parks[i].parkInformation.free
+                    });
+                    if (parkings.length === parks.length) {
+                        parkings = determinateClosestParkings(latitude, longitude, parkings);
+                        parkings.sort(function(a, b) {
+                            return a.dif - b.dif;
+                        });
+                        console.log('parkings', parkings);
+                        parkings.forEach((parking) => {
+                            insRow(parking);
+                        });
+                        document.getElementById("maps").src =
+                            'https://www.google.com/maps/embed/v1/directions?origin=@ViewData["adresse"]&destination=' +
+                            parkings[0].coordinates.lat +
+                            ',' +
+                            parkings[0].coordinates.lng +
+                            '&key=AIzaSyDWuVY7zg7s0MRF4Pg5xuWkGmIKCGDvoPs'
+                    }
+                });
+            }
+        })
+    }
+
+    function changeMapsView(lat, lng) {
+        document.getElementById("maps").src =
+            'https://www.google.com/maps/embed/v1/directions?origin=@ViewData["adresse"]&destination=' +
+            lat +
+            ',' +
+            lng +
+            '&key=AIzaSyDWuVY7zg7s0MRF4Pg5xuWkGmIKCGDvoPs';
+    }
+
+    function insRow(parking) {
+        var newRow = $("<tr>");
+        var cols = "";
+        cols += '<td>' + parking.id + '</td>';
+        cols += '<td>' + parking.places + '</td>';
+        cols += '<td><button class="btn" onclick="changeMapsView(' +
+            parking.coordinates.lat +
+            ',' +
+            parking.coordinates.lng +
+            ' )">trajet</button></td>';
+        newRow.append(cols);
+        $("table").append(newRow);
+    }
+
+    function determinateClosestParkings(latitude, longitude, parkings) {
+        parkings.forEach((parking) => {
+            var dif = PythagorasEquirectangular(latitude, longitude, parking.coordinates.lat, parking.coordinates.lng);
+            parking['dif'] = dif;
+        });
+        return parkings;
+    }
+
+    function VanillaRequests(method, adress, arguments, parameters) {
+        return new Promise((resolve, reject) => {
+            var xhr = new XMLHttpRequest();
+            if (method === 'GET' && arguments !== {}) {
+                Object.keys(arguments).forEach((key, index) => {
+                    if (index !== (arguments.length - 1)) {
+                        adress = adress + '?' + key + '=' + arguments(key) + '&';
+                    } else {
+                        adress = adress + '?' + key + '=' + arguments(key);
+                    }
+                });
+                xhr.open(method, adress);
+                xhr.send();
+            } else if (method === 'POST' && parameters !== {}) {
+                xhr.open(method, adress);
+                xhr.send(parameters);
+            } else {
+                xhr.open(method, adress);
+                xhr.send();
+            }
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    resolve(xhr.responseText);
+                }
+            }
+        })
+    }
+</script>

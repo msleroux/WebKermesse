@@ -6,19 +6,80 @@ using System.Threading.Tasks;
 
 namespace KermesseBO
 {
-    public class Parking
+    public class Parking : IEntityIdentifiable
     {
         public Guid ID { get; set; }
+        public string idJSON { get; set; }
 
         public string name { get; set; }
 
         public string status { get; set; }
 
-        public string max { get; set; }
+        public int max { get; set; }
 
-        public string free { get; set; }
+        public int free { get; set; }
 
         public double tarif { get; set; }
 
+        public string lat { get; set; }
+        public string lng { get; set; }
+
+        public Parking()
+        {
+            ID = new Guid();
+        }
+
     }
+
+    //*****************************  code généré par json2csharp  ***********************************
+    /*public class ParkInformation
+    {
+        public string name { get; set; }
+        public string status { get; set; }
+        public int max { get; set; }
+        public int free { get; set; }
+    }
+
+    public class Park
+    {
+        public ParkInformation parkInformation { get; set; }
+        public string id { get; set; }
+    }
+
+    public class Properties
+    {
+        public string name { get; set; }
+    }
+
+    public class Crs
+    {
+        public string type { get; set; }
+        public Properties properties { get; set; }
+    }
+
+    public class Geometry
+    {
+        public string type { get; set; }
+        public List<double> coordinates { get; set; }
+    }
+
+    public class Feature
+    {
+        public string type { get; set; }
+        public Crs crs { get; set; }
+        public Geometry geometry { get; set; }
+        public string id { get; set; }
+    }
+
+    public class Features
+    {
+        public string type { get; set; }
+        public List<Feature> features { get; set; }
+    }
+
+    public class RootObject
+    {
+        public List<Park> parks { get; set; }
+        public Features features { get; set; }
+    }*/
 }

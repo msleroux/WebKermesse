@@ -253,6 +253,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MapController.cs" />
+    <Compile Include="Controllers\ParkingController.cs" />
     <Compile Include="Controllers\ThemesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -262,6 +263,7 @@
     <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ParkingViewModel.cs" />
     <Compile Include="Models\PostalAddressViewModel.cs" />
     <Compile Include="Models\ListEventViewModel.cs" />
     <Compile Include="Models\ThemeViewModel.cs" />
@@ -704,6 +706,8 @@
     <Content Include="Views\Events\Delete.cshtml" />
     <Content Include="Views\Events\_PartialListEvent.cshtml" />
     <Content Include="Views\Themes\_PartialListTheme.cshtml" />
+    <Content Include="Views\Map\Parkings.cshtml" />
+    <Content Include="Views\Parking\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

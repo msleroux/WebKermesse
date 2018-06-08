@@ -26,6 +26,7 @@
                     <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
                     <li>@Html.ActionLink("Events", "Index", "Events")</li>
                     <li>@Html.ActionLink("Map", "Index", "Map")</li>
+                    <li>@Html.ActionLink("Parkings","Index","Parking")</li>
 
                     @if (@User.Identity.IsAuthenticated && User.IsInRole("EventPlanner"))
                     {
