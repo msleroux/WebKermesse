@@ -17,43 +17,55 @@ namespace WebKermesse.Controllers
         {
             /* initDataBdd();*/
 
-            //Insertion dans une SelectListe les informations des Thèmes présent en BDD
-            List<Event> listeEventAVenir = GetListAVenir();
-            SelectList listeThemes = GetSelectListThemes();
+            AccueilViewModel aVM = new AccueilViewModel();
+            aVM.EventResults = initListEventViewModel(GetListAVenir());
+            aVM.ThemeView = new ThemeViewModel();
+            return View(aVM);
+        }
 
-            //Instanciation de ViewModel avec l'event
-            EventViewModel eVM = new EventViewModel();
-            //Insertion de la SelectList dans le ViewModel
-            eVM.ListEventAVenir = listeEventAVenir;
-            eVM.ListThemes = listeThemes;
-            return View(eVM);
-        }
-        private SelectList GetSelectListThemes()
-        {
-            return new SelectList(ServiceThemes.GetAll(), "ID", "Libelle");
-        }
+        //pour premier chargement page accueil sans recherche
         private List<Event>GetListAVenir()
         {
             return ServiceEvents.GetByDate(DateTime.Today.AddDays(-10), DateTime.Today.AddDays(8));
         }
 
+
+        //transforme une liste d'event en EventViewModel
+        private ListEventViewModel initListEventViewModel(List<Event> events)
+        {
+            ListEventViewModel liste = new ListEventViewModel();
+            foreach (Event e in events)
+            {
+                liste.Add(new EventViewModel(e));
+            }
+            return liste;
+        }
+
+
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult FormAccueil(EventViewModel model)
+        public ActionResult FormAccueil(AccueilViewModel model)
         {
-            EventViewModel eVM = new EventViewModel();
-            eVM.ListThemes = GetSelectListThemes();
-            List<Event> listeEvent = ServiceEvents.GetByLibelleByTheme(model.FormTextRecherche, model.FormThemeId);
-            
-            if(listeEvent.Count != 0)
+          
+            List<Event> listeEvent = new List<Event>();
+
+           
+
+            //si aucune infos rentrées dans les champs
+            if (model.Recherche.Count() == 0 && (model.ThemeView.ThemeId) == Guid.Empty)
             {
-                eVM.ListEventResult = listeEvent;
-                
-            } else
-            {
-                eVM.ListEventAVenir = GetListAVenir();
+              listeEvent = ServiceEvents.GetAll();
+
+            } else {
+               
+             // les cas de champs nul sont gérées dans la classe de services
+               listeEvent = ServiceEvents.GetByLibelleByTheme(model.Recherche, model.ThemeView.ThemeId);
             }
-            return View("Index",eVM);
+
+            AccueilViewModel leVM = new AccueilViewModel();
+            leVM.EventResults = initListEventViewModel(listeEvent);
+
+            return View("Index",leVM);
         }
 
         /*private void initDataBdd()

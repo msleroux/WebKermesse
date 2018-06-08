@@ -258,11 +258,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AccueilViewModel.cs" />
     <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PostalAddressViewModel.cs" />
-    <Compile Include="Models\SearchFormModel.cs" />
+    <Compile Include="Models\ListEventViewModel.cs" />
     <Compile Include="Models\ThemeViewModel.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
@@ -411,7 +412,26 @@
     <Content Include="Content\bootstrap.united.css" />
     <Content Include="Content\bootstrap.united.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\banner-jazz.jpg" />
     <Content Include="Content\images\bkg-blu.jpg" />
+    <Content Include="Content\images\flag-location-02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\images\flag-location-03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\images\flag-location-04.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\images\flag-location.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\images\location-event.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\images\location-time.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\images\parlement-de-rennes.jpg" />
     <Content Include="Content\images\photoRennes.jpg" />
     <Content Include="Content\site.js" />
@@ -683,6 +703,8 @@
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Home\SearchPartial.cshtml" />
     <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\Events\_PartialListEvent.cshtml" />
+    <Content Include="Views\Themes\_PartialListTheme.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
