@@ -83,7 +83,11 @@ namespace WebKermesse.Models
             get { return Metier.Address.City; }
             set { this.Metier.Address.City = value; }
         }
-
+        public Picture Picture
+        {
+            get { return Metier.Picture; }
+            set { this.Metier.Picture = value; }
+        }
         public IEnumerable<SelectListItem> ListThemes { get; set; }
 
         //[FileExtensions(Extensions ="jpg,jpeg")]

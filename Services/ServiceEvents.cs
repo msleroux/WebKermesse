@@ -55,7 +55,7 @@ namespace Services
             List<Event> liste = new List<Event>();
             using (WebKContext context = new WebKContext())
             {
-                var rqt = from Event e in context.Events
+                var rqt = from Event e in context.Events.Include(e => e.Picture)
                           where e.StartDate >= startDate
                           && e.EndDate <= endDate
                           orderby e.StartDate

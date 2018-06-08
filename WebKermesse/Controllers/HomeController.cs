@@ -18,7 +18,16 @@ namespace WebKermesse.Controllers
             /* initDataBdd();*/
 
             AccueilViewModel aVM = new AccueilViewModel();
-            aVM.EventResults = initListEventViewModel(GetListAVenir());
+            List<Event> events = GetListAVenir();
+            foreach(Event e in events)
+            {
+                if (e.Picture == null)
+                {
+                    e.Picture = new Picture() { Path = "Upcoming_Events-Banner.jpg" };
+
+                }
+            }
+            aVM.EventResults = initListEventViewModel(events);
             aVM.ThemeView = new ThemeViewModel();
             return View(aVM);
         }
